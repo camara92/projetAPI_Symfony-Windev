@@ -8,11 +8,19 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ApiController extends AbstractController
 {
-    #[Route('/api', name: 'app_api')]
-    public function index(): Response
+    #[Route('/listeRegions', name: 'listeRegions')]
+    public function listeRegions(): Response
     {
+        // appel de l'api 
+       $mesregions =  file_get_contents('https://geo.api.gouv.fr/regions');
+    //    dump($mesregions);
+    //    die();
+        
         return $this->render('api/index.html.twig', [
-            'controller_name' => 'ApiController',
+            'mesregions' => $mesregions, 
+           
+
+            
         ]);
     }
 }
