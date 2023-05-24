@@ -5,19 +5,22 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class ApiController extends AbstractController
 {
     #[Route('/listeRegions', name: 'listeRegions')]
-    public function listeRegions(): Response
+    public function listeRegions(SerializerInterface $serializer ): Response
     {
-        // appel de l'api 
+        // appel de l'api : https://geo.api.gouv.fr/decoupage-administratif/regions
        $mesregions =  file_get_contents('https://geo.api.gouv.fr/regions');
-    //    dump($mesregions);
+      $mesregionsTab =  $serializer->decode($mesregions,  'json');
+
+    //    dump($mesregionsTab);
     //    die();
         
         return $this->render('api/index.html.twig', [
-            'mesregions' => $mesregions, 
+            'mesregions' => $mesregionsTab, 
            
 
             
