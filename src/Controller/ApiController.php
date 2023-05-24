@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class ApiController extends AbstractController
 {
-    #[Route('/listeRegions', name: 'listeRegions')]
+    #[Route('/', name: 'listeRegions')]
     public function listeRegions(SerializerInterface $serializer): Response
     {
         // appel de l'api : https://geo.api.gouv.fr/decoupage-administratif/regions
