@@ -17,15 +17,18 @@ class ApiController extends AbstractController
         $mesregionsTab =  $serializer->decode($mesregions,  'json');
         // dénormaliser 
        $mesregionsObjet=  $serializer->denormalize($mesregionsTab, 'App\Entity\Region[]');
+       // /**Methode 2 */
+       // $mesregions  = $serializer->deserialize($mesregions, 'App\Entity\Region[]', 'json');
+
         // la denormalisation permet de rendre en objet les array donc manipuler comme bon nous semble dans la vue et en back 
-        
+
         //    dump($mesregionsObjet);
         //    die();
 
         return $this->render('api/index.html.twig', [
-            'mesregions' => $mesregionsTab,
+            // 'mesregions' => $mesregionsTab,
             'mesregions' => $mesregionsObjet,
-
+            // 'mesregions' => $mesregions
 
 
         ]);
